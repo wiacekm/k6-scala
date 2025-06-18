@@ -4,9 +4,16 @@ import org.scalajs.linker.interface.ModuleSplitStyle
 import sbt.Keys._
 import sbt._
 
-ThisBuild / organization  := "com.github.wiacekm"
+ThisBuild / organization  := "org.virtuslab"
 
-publishMavenStyle := true
+ThisBuild / licenses := Seq(("Apache-2.0" -> url("https://opensource.org/licenses/apache-2-0")))
+ThisBuild / description := "Type-safe Scala.js facade for writing k6 load testing scenarios in Scala."
+ThisBuild / homepage := Some(url("https://github.com/VirtusLab/k6-scala"))
+ThisBuild / developers := List(
+  Developer("wiacekm", "Michał Wiącek", "", url("https://github.com/wiacekm"))
+)
+ThisBuild / scmInfo := Some(ScmInfo(url("https://github.com/VirtusLab/k6-scala"), "scm:git:git@github.com:VirtusLab/k6-scala.git"))
+ThisBuild / publishMavenStyle := true
 
 //settings for all the projects
 lazy val commonSettings = Seq(
