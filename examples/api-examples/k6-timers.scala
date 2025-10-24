@@ -6,6 +6,7 @@ package example
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.*
+import org.virtuslab.scalajs.k6.execution.*
 import org.virtuslab.scalajs.k6.timers.*
 import org.virtuslab.scalajs.k6.*
 import scala.concurrent.duration.*
@@ -14,9 +15,7 @@ object Example {
   @JSExportTopLevel(JSImport.Default)
   def main(): Unit = {
     var timeoutId = null.asInstanceOf[TimerId]
-    val intervalId = setInterval(
-      println("This runs every 200ms"),
-      200.milliseconds)
+    val intervalId = setInterval(println("This runs every 200ms"), 200.milliseconds)
     timeoutId = setTimeout(
       {
         println("This runs after 2s")
@@ -25,5 +24,6 @@ object Example {
       },
       2.seconds
     )
+    println(s"secnario name is: ${Execution.scenario.name}")
   }
 }
