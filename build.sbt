@@ -25,7 +25,7 @@ lazy val releaseTag = sys.props.get("release")
 //settings for all the projects
 lazy val commonSettings = Seq(
   scalaVersion := "3.5.0",
-  crossScalaVersions := Seq("2.12.21", "2.13.17", "3.3.6", "3.5.0"),
+  crossScalaVersions := Seq("2.12.21", "2.13.18", "3.3.6", "3.5.0"),
   name := "k6-scala",
   updateOptions := updateOptions.value.withCachedResolution(true),
   scalacOptions ++= Seq(
@@ -39,13 +39,13 @@ lazy val commonSettings = Seq(
 lazy val k6scala: Project =
   Project(id = "k6scala", base = file("k6scala"))
     .enablePlugins(ScalaJSBundlerPlugin)
-    .settings(commonSettings ++ crossCompileSettings("k6scala") : _*)
+    .settings(commonSettings ++ crossCompileSettings("k6scala"): _*)
 
 lazy val publishLocalDev = taskKey[Unit]("Publish local version with dev suffix")
 
 publishLocalDev := {
   val log = streams.value.log
-  val s   = (state.value: @sbtUnchecked)
+  val s = (state.value: @sbtUnchecked)
   val devVersion = "dev"
   val versions =
     ((k6scala / crossScalaVersions).value :+ (k6scala / scalaVersion).value).distinct
@@ -72,7 +72,7 @@ lazy val root = Project("root", file("."))
   .dependsOn(k6scala)
   .aggregate(k6scala)
 
-def crossCompileSettings(module: String) = 
+def crossCompileSettings(module: String) =
   Seq(
     Compile / unmanagedSourceDirectories += {
       val sharedSourceDir = (ThisBuild / baseDirectory).value / s"$module/src/main"

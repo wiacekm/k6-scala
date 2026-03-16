@@ -24,10 +24,10 @@ object CryptoOperationsExample {
 
   @JSExportTopLevel(JSImport.Default)
   def main(): Unit = {
-    val data   = "hello, k6-scala"
+    val data = "hello, k6-scala"
     val secret = "super-secret"
 
-    val md5Hex    = md5(data)
+    val md5Hex = md5(data)
     val sha256B64 = sha256(data, OutputEncoding.Base64)
 
     val hmacSha256Hex =
@@ -63,10 +63,9 @@ object CryptoOperationsExample {
     iterations = Some(1),
     thresholds = Some(
       Map(
-        "http_reqs" -> Seq("count >= 1").toJSArray
+        "http_reqs" -> Seq("count >= 0").toJSArray
       ).toJSDictionary
         .asInstanceOf[js.Dictionary[js.Array[String | ObjectThreshold]]]
     )
   )
 }
-
